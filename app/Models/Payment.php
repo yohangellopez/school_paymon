@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Payment extends Model
+{
+    protected $fillable = ['enrollment_id', 'method', 'amount', 'date'];
+
+    public function enrollment()
+    {
+        return $this->belongsTo(Enrollment::class);
+    }
+}

@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Academy extends Model
+{
+    protected $fillable = ['name', 'description'];
+
+    // Relación: Una academy tiene muchos cursos.
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+}
