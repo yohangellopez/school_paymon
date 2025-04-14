@@ -59,6 +59,19 @@ class EnrollmentForm extends Component
             ->get();
     }
 
+    public function selectCourse($courseId)
+    {
+        $this->selectedCourse = Course::with('academy')->find($courseId);
+    }
+
+    public function getSelectedCourseProperty()
+    {
+        if($this->selectedCourse) {
+            return Course::with('academy')->find($this->selectedCourse);
+        }
+        return null;
+    }
+
     public function render()
     {
         return view('livewire.frontend.enrollment-form');
