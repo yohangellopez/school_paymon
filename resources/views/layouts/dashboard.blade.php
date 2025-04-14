@@ -105,13 +105,13 @@
                         </a>
                     </li>
                     <li>
-                        <a >
+                        <a href="{{ route('admin.enrollment.index') }}">
                             <span class="icon"><i class="mdi mdi-numeric"></i></span>
                             <span class="menu-item-label">Matriculas</span>
                         </a>
                     </li>
                     <li>
-                        <a >
+                        <a href="{{ route('admin.communication.index') }}">
                             <span class="icon"><i class="mdi mdi-teach"></i></span>
                             <span class="menu-item-label">Comunicados</span>
                         </a>

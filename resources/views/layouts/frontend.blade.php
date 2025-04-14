@@ -5,18 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Academia y Cursos Paymon</title>
+    <title>Paymon - Sistema de Gestión Académica</title>
     @vite('resources/css/app.css', 'resources/js/app.js')
     @livewireStyles
-    <style>
-        .dropdown-menu {
-            display: none;
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-    </style>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -28,6 +19,15 @@
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
+    <style>
+        .course-card:hover .course-overlay {
+            opacity: 1;
+        }
+        .enrollment-steps li.completed {
+            @apply border-green-500 bg-green-50;
+        }
+    </style>
+
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
@@ -35,80 +35,74 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
 </head>
 
 <body class="pl-0 pt-0 bg-slate-50">
-    <nav class="bg-white shadow fixed w-full z-10 ">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center max-w-7xl">
-            <div class="flex w-full  items-center">
-                <button id="menu-toggle" class="sm:hidden text-gray-700 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-                <div class="hidden  sm:justify-around  w-full sm:flex space-x-4">
-                    <a href="#" class="text-gray-700 hover:text-cyan-500"><svg data-slot="icon" class="h-6 w-6"
-                            fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5">
-                            </path>
-                        </svg> </a>
-
-
-                    <a href="#" {{ request()->routeIs('p-home.index') ? 'class=text-cyan-500' : '' }}
-                        class="text-gray-700 hover:text-cyan-500">Inicio</a>
-
-                    <a href="#"
-                        class="text-gray-700 hover:text-cyan-500">Novedades</a>
-
-                    <a target="_blank" href="#" class="text-gray-700 hover:text-cyan-500">Contactanos</a>
-                    <a href="{{ route('login')}}"
-                        class="text-gray-700 hover:text-cyan-500">Iniciar Sesión</a>
-
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="{{ asset('img/logo.png') }}" alt="Paymon Logo">
+                        <span class="ml-2 text-xl font-bold text-gray-800">Paymon Academy</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#courses" class="text-gray-600 hover:text-blue-600 transition-colors">Cursos</a>
+                    <a href="#academies" class="text-gray-600 hover:text-blue-600 transition-colors">Academias</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contacto</a>
+                    <a href="{{ route('login') }}" 
+                       class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Acceso Administrador
+                    </a>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="sm:hidden py-2 space-y-1 hidden px-1">
-
-            <a href="#" {{ request()->routeIs('home.index') ? 'class=text-cyan-500' : '' }}
-                class="block px-4 py-2 text-gray-700 hover:text-white hover:bg-cyan-500 rounded-md">Inicio</a>
-            <a href="#"
-                {{ request()->routeIs('p-cursos.index', 'service.customer.view') ? 'class=text-cyan-500' : '' }}
-                class="block px-4 py-2 text-gray-700 hover:text-white hover:bg-cyan-500 rounded-md">Novedades</a>
-
-            <a target="_blank" href="#"
-                class="block px-4 py-2 text-gray-700 hover:text-white hover:bg-cyan-500 rounded-md">Contactanos</a>
-            <a href="{{ route('login') }}"
-                class="block px-4 py-2 text-gray-700 hover:text-white hover:bg-cyan-500 rounded-md">
-                Aula Virtual
-            </a>
-        </div>
     </nav>
+
+    <header class="pt-20 pb-24 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                Transformando la Educación con Excelencia
+            </h1>
+            <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                Descubre nuestra oferta académica y comienza tu camino hacia el éxito profesional
+            </p>
+            
+            <!-- Estadísticas destacadas -->
+            <div class="grid md:grid-cols-3 gap-8 text-white mb-12">
+                <div class="bg-white/10 p-6 rounded-xl">
+                    <div class="text-3xl font-bold mb-2">+150</div>
+                    <div class="text-sm">Cursos Disponibles</div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-xl">
+                    <div class="text-3xl font-bold mb-2">+5K</div>
+                    <div class="text-sm">Estudiantes Activos</div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-xl">
+                    <div class="text-3xl font-bold mb-2">98%</div>
+                    <div class="text-sm">Satisfacción</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
 
     <section class="section main-section">
         {{ $slot }}
     </section>
 
-    <footer class="bg-white shadow  text-gray-700 pb-4 mt-10">
-        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center px-4">
-            <div class="flex flex-wrap sm:flex-nowrap gap-2  sm:space-x-4">
-
-                <a href="#" {{ request()->routeIs('home.index') ? 'class=text-cyan-500' : '' }}
-                    class="block mt-4 sm:mt-0 sm:inline-block text-gray-700 hover:text-cyan-400">Inicio</a>
-                <a href="#"
-                    {{ request()->routeIs('p-cursos.index', 'service.customer.view') ? 'class=text-cyan-500' : '' }}
-                    class="block mt-4 sm:mt-0 sm:inline-block text-gray-700 hover:text-cyan-400">Cursos</a>
-                <a target="_blank" href="#"
-                    class="block mt-4 sm:mt-0 sm:inline-block text-gray-700 hover:text-cyan-400">Contáctenos</a>
-                <a href="#" class="block mt-4 sm:mt-0 sm:inline-block text-gray-700 hover:text-cyan-400">Área
-                    Usuarios</a>
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Paymon Academy</h4>
+                    <p class="text-sm">Transformando la educación mediante soluciones innovadoras y accesibles.</p>
+                </div>
             </div>
-            <div class="mt-4 sm:mt-0">
-                <span class="text-sm">©2024 Yohangel Lopez para Paymon. Todos los derechos reservados.</span>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
+                © 2024 Paymon. Yohangel Lopez Todos los derechos reservados.
             </div>
         </div>
     </footer>
@@ -158,6 +152,19 @@
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
     @livewireScripts
+    <script>
+        // Scripts para interactividad
+        document.addEventListener('livewire:load', function() {
+            Livewire.on('enrollmentCompleted', (data) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Matrícula Exitosa!',
+                    html: `Recibirás un correo de confirmación en <strong>${data.email}</strong>`,
+                    confirmButtonText: 'Aceptar'
+                });
+            });
+        });
+    </script>
 </body>
 
 
