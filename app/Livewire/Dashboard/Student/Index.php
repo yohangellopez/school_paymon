@@ -12,7 +12,7 @@ class Index extends Component
     public $search = "";
     public $first_name;
     public $last_name;
-    public $birth_date;
+    public $date_of_birth;
     public $rep_search;
     public $representative_id;
 
@@ -21,7 +21,7 @@ class Index extends Component
         $student = Student::findOrFail($studentId);
         $this->first_name              = $student->first_name;
         $this->last_name               = $student->last_name;
-        $this->birth_date              = $student->birth_date;
+        $this->date_of_birth           = $student->date_of_birth;
         $this->representative_id       = $student->representative_id;
         $this->rep_search              = $student->representative->name . ' ' . $student->representative->last_name;
 

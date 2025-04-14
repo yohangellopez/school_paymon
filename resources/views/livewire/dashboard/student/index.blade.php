@@ -35,7 +35,7 @@
                                 <td>{{ $student->id }}</td>
                                 <td>{{ $student->first_name }} {{ $student->last_name }}</td>
                                 <td>{{ $student->representative->first_name.' '.$student->representative->last_name }}</td>
-                                <td>{{ \Carbon\Carbon::parse($student->birth_date)->age }} años</td>
+                                <td>{{ \Carbon\Carbon::parse($student->date_of_birth)->age }} años</td>
                             </tr>
                         @empty
                             <tr>
@@ -85,7 +85,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Fecha de Nacimiento:</label>
-                            <p class="mt-1">{{ $birth_date ? \Carbon\Carbon::parse($birth_date)->format('d/m/Y') : '' }}</p>
+                            <p class="mt-1">{{ $date_of_birth ? \Carbon\Carbon::parse($date_of_birth)->format('d/m/Y') : '' }}</p>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Representante:</label>

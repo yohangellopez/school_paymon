@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,5 +22,11 @@ class Student extends Model
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class);
+    }
+
+    
+    public function getAgeAttribute()
+    {
+        return Carbon::parse($this->date_of_birth)->age;
     }
 }
