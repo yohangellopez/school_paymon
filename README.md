@@ -34,8 +34,8 @@ cd school_paymon
 
 ### 2. Instalar Dependencias
 ```bash
-git clone https://github.com/yohangellopez/school_paymon.git
-cd school_paymon
+composer install
+npm install
 ```
 
 ### 3. Configurar Entorno
@@ -59,7 +59,7 @@ php artisan migrate --seed
 ```
 ### 5. Compilar Assets
 ```bash
-php artisan migrate --seed
+npm run dev
 ```
 ### 6. Iniciar servidor
 ```bash

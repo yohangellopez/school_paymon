@@ -18,8 +18,6 @@
         }
     </style>
 
-
-
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -68,41 +66,11 @@
                         class="text-gray-700 hover:text-cyan-500">Novedades</a>
 
                     <a target="_blank" href="#" class="text-gray-700 hover:text-cyan-500">Contactanos</a>
-                    <a href=""
-                        {{ request()->routeIs('my.service.customer.index', 'my.service.customer.view', 'my.service.customer.video') ? 'class=text-cyan-500' : '' }}
-                        class="text-gray-700 hover:text-cyan-500">Aula Virtual</a>
+                    <a href="{{ route('login')}}"
+                        class="text-gray-700 hover:text-cyan-500">Iniciar Sesión</a>
 
                 </div>
             </div>
-            {{-- <div class="relative">
-                <button id="user-menu-toggle" class="text-gray-700 focus:outline-none">
-                    <div class="flex items-center">
-                        <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="John Doe">
-
-                        <span class="ml-2 hidden sm:block">{{ Auth::user()->name }}
-                            {{ Auth::user()->last_name }}</span>
-
-                        <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.084l3.71-3.854a.75.75 0 111.08 1.04l-4.25 4.417a.75.75 0 01-1.08 0l-4.25-4.417a.75.75 0 01.02-1.06z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                </button>
-                <div id="user-dropdown-menu"
-                    class="dropdown-menu absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-20 ">
-                    <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Mi
-                        perfil</a>
-                    <hr class="border-t border-gray-200">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
-                            Salir
-                        </button>
-                    </form>
-                </div>
-            </div> --}}
         </div>
         <div id="mobile-menu" class="sm:hidden py-2 space-y-1 hidden px-1">
 

@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Enum\Course\CourseModalityEnum;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'academy_id', 'name', 'description', 'cost', 'duration_hours', 'modality'
     ];
